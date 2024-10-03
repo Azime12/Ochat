@@ -77,7 +77,7 @@ const SighUp = () => {
       };
       
       const { data } = await axios.post(
-        "http://localhost:5000/api/user",
+        "https://chat-app-d3rl.onrender.com/api/user",
         {
           name,
           phoneNumber,

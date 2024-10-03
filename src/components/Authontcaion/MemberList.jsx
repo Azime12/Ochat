@@ -35,7 +35,7 @@ const demember = async (_id,e) => {
   setLoading(true);
   console.log(_id);
   const { data } = await axios.post(
-    "http://localhost:5000/api/user/delete",
+    "https://chat-app-d3rl.onrender.com/api/user/delete",
     {
       _id,
       
@@ -46,7 +46,7 @@ const demember = async (_id,e) => {
  console.log(data);
 
 const response = await  axios(
-    'http://localhost:5000/api/user/memberr',config
+    'https://chat-app-d3rl.onrender.com/api/user/memberr',config
   );
   console.log(response);
   setMemberList(response.data)
@@ -69,7 +69,7 @@ useEffect(() => {
       };
       
     const response = await  axios(
-          'http://localhost:5000/api/user/member',config
+          'https://chat-app-d3rl.onrender.com/api/user/member',config
         );
         console.log(response);
         setMemberList(response.data)
