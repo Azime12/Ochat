@@ -11,13 +11,10 @@ import { ChatState } from "../Context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
-
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-
   const toast = useToast();
 
   const fetchChats = async () => {
-    // console.log(user._id);
     try {
       const config = {
         headers: {
@@ -26,10 +23,12 @@ const MyChats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get("/api/chat", config);
+      console.log("Fetched Chats:", data); // Log fetched chats to inspect data
       setChats(data);
     } catch (error) {
+      console.error("Error fetching chats:", error);
       toast({
-        title: "Error Occured!",
+        title: "Error Occurred!",
         description: "Failed to Load the chats",
         status: "error",
         duration: 5000,
@@ -40,8 +39,20 @@ const MyChats = ({ fetchAgain }) => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    fetchChats();
+    const storedUser = localStorage.getItem("userInfo");
+    if (storedUser) {
+      setLoggedUser(JSON.parse(storedUser));
+      fetchChats();
+    } else {
+      toast({
+        title: "No User Info Found",
+        description: "Please log in again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
     // eslint-disable-next-line
   }, [fetchAgain]);
 
@@ -87,9 +98,9 @@ const MyChats = ({ fetchAgain }) => {
         borderRadius="lg"
         overflowY="hidden"
       >
-        {chats ? (
+        {Array.isArray(chats) && chats.length > 0 ? (
           <Stack overflowY="scroll">
-            {chats?.map((chat) => (
+            {chats.map((chat) => (
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
