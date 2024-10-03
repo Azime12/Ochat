@@ -75,7 +75,7 @@ const Edit = ({ename,eresponsiblity,ephonenumber,eId}) => {
       };
       
       const { data } = await axios.post(
-        "/api/user/update",
+        "https://chat-app-d3rl.onrender.com/api/user/update",
         {
           name,
           eId,
