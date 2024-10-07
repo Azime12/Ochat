@@ -29,7 +29,7 @@ import {
 		  borderWidth="1px"
 		>
 		  <Text fontSize="2xl" fontFamily="Work sans">
-			አቃቂ ቃሊቲ ክፍለ አስተዳደር መልክት መላኪያ
+		AC  መልክት መላኪያ
 		  </Text>
 		</Box>
 		<Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">

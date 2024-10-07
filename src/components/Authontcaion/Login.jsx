@@ -71,7 +71,7 @@ const Login = () => {
 
   return (
     <VStack spacing="10px">
-      <FormControl id="email" isRequired>
+      <FormControl id="phonenumber" isRequired>
         <FormLabel>ስልክ ቁጥር</FormLabel>
         <Input
           value={phoneNumber}
